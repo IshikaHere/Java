@@ -1,84 +1,78 @@
+package Problem_solving;
+
 import java.util.Scanner;
-abstract class ATM{ //parent class
+
+abstract class ATM {
     double balance;
-    ATM(double balance){ //parent class constructor
+
+    ATM(double balance) {
         this.balance = balance;
     }
-    abstract void withdraw(double amount); //withdraw method
-    abstract void deposit(double amount); //deposit method
-    abstract void checkBalance(); //check balance abstract method
+
+    abstract void withdraw(double balance);
+    abstract void deposit(double balance);
+    abstract void checkBal();
 }
 
-class SBI extends ATM{ //child class
-    SBI(double balance){ //child class constructor
+class ICICI extends ATM {
+    ICICI(double balance) {
         super(balance);
     }
-    //withdraw method
-    void withdraw(double amount){
-        if(amount>0 && amount<=balance){
+
+    void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
             balance -= amount;
-            System.out.println("Withdraw success, avl balance: "+balance);
-        }else{
-            System.out.println("insufficient balance");
+            System.out.println("Withdrawn Successfully");
+        } else {
+            System.out.println("Insufficient Balance");
         }
     }
 
-    //deposit method
-    void deposit(double amount){
-        if(amount>0){
+    void deposit(double amount) {
+        if (amount > 0) {
             balance += amount;
-            System.out.println("Deposit success, avl balance: "+balance);
-        }else{
-            System.out.println("Invalid amount");
+            System.out.println("Amount Deposited Successfully");
+        } else {
+            System.out.println("Invalid Amount");
         }
     }
 
-    //check balance method
-    void checkBalance(){
-        System.out.println("Avl balance: "+balance);
+    void checkBal() {
+        System.out.println("Available Balance: " + balance);
     }
 }
-public class ATM_Abstraction{
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        SBI sbi = new SBI(1000); //balance 1000
-        while(true){
-            System.out.println("--------ATM MENU--------");
-            System.out.println("1. Withdraw");
-            System.out.println("2. Deposit");
-            System.out.println("3. Check Balance");
-            System.out.println("4. Exit");
-            System.out.println("------------------------");
 
-            System.out.print("Enter your choice: ");
-            int choice = sc.nextInt();
-            switch(choice){
-                case 1:
+public class ATM_Abstraction {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ICICI obj = new ICICI(1000);
+
+        while (true) {
+            System.out.print("""
+            ---ATM MENU---
+            1. Withdraw Money
+            2. Deposit Money
+            3. Check Money
+            4. Exit
+            Enter Your Choice: """);
+
+            switch (sc.nextInt()) {
+                case 1 -> {
                     System.out.print("Enter amount to withdraw: ");
-                    double amount = sc.nextDouble();
-                    sbi.withdraw(amount);
-                    break;
-                case 2:
+                    obj.withdraw(sc.nextDouble());
+                }
+                case 2 -> {
                     System.out.print("Enter amount to deposit: ");
-                    amount = sc.nextDouble();
-                    sbi.deposit(amount);
-                    break;
-                case 3:
-                    sbi.checkBalance();
-                    break;
-                case 4:
-                    System.out.println("Thank you for using our ATM");
+                    obj.deposit(sc.nextDouble());
+                }
+                case 3 -> obj.checkBal();
+                case 4 -> {
+                    System.out.println("Thank you for using ICICI ATM");
                     sc.close();
                     System.exit(0);
-                    break;
-                default:
-                    System.out.println("Invalid choice");
+                }
+                default -> System.out.println("Invalid Option, Please select a correct option.");
             }
-
         }
-
-        void checkBalance(){
-        System.out.println("Avl balance: "+balance);
-
     }
 }

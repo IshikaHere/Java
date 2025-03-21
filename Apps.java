@@ -1,56 +1,50 @@
-//implementation of abstraction
-import java.util.*;
+package Oops;
 
-abstract class Softwares{ //abstract parent class
+import java.util.Scanner;
 
-    String username;
+// Implementation of abstraction
+abstract class softwares{
+    String user_name;
     String password;
 
     void user_input(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter username: ");
-        username = sc.nextLine();
-        System.out.println("Enter password: ");
+        System.out.println("Enter a Username :");
+        user_name = sc.nextLine();
+        System.out.println("Enter a Password");
         password = sc.nextLine();
     }
 
-    void user_login(){
-        System.out.println("Welcome to Instagram");
-        System.out.println("----------------------");
-        System.out.println("Please login here");
+    void User_login(){
+        System.out.println("Welcome To Instagram");
+        System.out.println("--------------------");
+        System.out.println("Please Login Here...!!");
     }
-
-
-    abstract void app_open(); //abstract method
-
-
+    abstract void app_open();
 }
-class Instagram extends Softwares{ //child class
+
+class Insta extends softwares{
     @Override
-    void app_open(){
-        while(true){
-            if(username.equals("ishika") && password.equals("password")){ //if string ".equals" operator is used "==" wont work
-            System.out.println("Succesfully logged in");
-            break;
-        }else{
-            System.out.println("Invalid username or password");
-            user_input();
+    void app_open() {
+        while (true){
+            if (user_name.equals("Akbar") && password.equals("123akbar")){
+                System.out.println("Successfully Login,App Is Open...");
+                break;
+            }
+            else{
+                System.out.println("Invalid username or password :(");
+                user_input();
+            }
         }
-        }
-    }
-    void app_close(){
-        System.out.println("Instagram is closed");
     }
 }
 
-
-public class Apps{
-    public static void main(String[] args){
-
-        Instagram i = new Instagram();
-        i.user_login();
-        i.user_input();
-        i.app_open();
+public class Apps {
+    public static void main(String[] args) {
+        Insta s = new Insta();
+        s.User_login();
+        s.user_input();
+        s.app_open();
 
     }
 }
